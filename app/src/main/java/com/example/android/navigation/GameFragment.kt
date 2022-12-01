@@ -34,6 +34,8 @@ class GameFragment : Fragment() {
     // The first answer is the correct one.  We randomize the answers before showing the text.
     // All questions must have four answers.  We'd want these to contain references to string
     // resources so we could internationalize. (or better yet, not define the questions in code...)
+
+    // TODO: Add more questions
     private val questions: MutableList<Question> = mutableListOf(
             Question(text = "What is Android Jetpack?",
                     answers = listOf("all of these", "tools", "documentation", "libraries")),
@@ -75,6 +77,8 @@ class GameFragment : Fragment() {
         // Bind this fragment class to the layout
         binding.game = this
 
+        // TODO: Game should ask for more than 3 questions, ideally for all the questions in the list
+
         // Set the onClickListener for the submitButton
         binding.submitButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
@@ -100,6 +104,7 @@ class GameFragment : Fragment() {
                         // We've won!  Navigate to the gameWonFragment.
                         view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
                     }
+                // TODO: game shouldn't end if an answered questions is wrong
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
                     view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment2())
@@ -108,6 +113,8 @@ class GameFragment : Fragment() {
         }
         return binding.root
     }
+
+    // TODO: at the end of the game show all correct and wrong answers
 
     // randomize the questions and set the first question
     private fun randomizeQuestions() {
